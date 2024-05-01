@@ -2,6 +2,7 @@
 
 ## Only csv format supported yet!
 
-**Usage**: node generator.js datapath 
+**Usage**: 
+> node generator.js datapath 
 
-For example, datapath = ./my-data.csv
+For example, datapath could be a *./my-data.csv*
