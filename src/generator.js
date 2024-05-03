@@ -16,7 +16,7 @@ function writeCSV(fname="./hydrid-data.csv", data=[]) {
 }
 
 
-function get_data(fname="./hydrid-data.csv") { 
+function get_data(fname="./hydrid-data.csv", nsampes=1000) { 
     // ln(P [MPa]) = k * 1000/T[K] + b 
     const a = -3.417, b = 9.916; 
     // P[MPa] (c[wt%]) = A * c^2 + B * c + C 
@@ -25,10 +25,16 @@ function get_data(fname="./hydrid-data.csv") {
     const Tmin = 330.0, Tmax = 390.0; 
 
     const path = require("path"); 
+    const N = nsampes; 
+    let data = []; 
 
-    const N = 1000; 
+    if (path.parse(fname).ext != ".csv") { 
+        throw `Bad filename: ${fname}! Nothing to be done.`; 
+    }
 
-    data = []; 
+    if (N <= 0) { 
+        throw `Samples count must be non-negative!`; 
+    }
 
     for (let i = 0; i < N; i++) { 
         let T = Tmin + (Tmax - Tmin) * i / N; 
@@ -45,18 +51,18 @@ function get_data(fname="./hydrid-data.csv") {
         );
     }
 
-    if (path.parse(fname).ext === ".csv") { 
-        writeCSV(fname, data); 
-    }
-    else {
-        console.log(`Bad filename: ${fname}! Nothing to be done.`)
-    }
+    writeCSV(fname, data); 
 }; 
 
-const args = process.argv.slice(2); 
+const readline = require("node:readline"); 
+const rl = readline.createInterface({
+    input: process.stdin, 
+    output: process.stdout
+}); 
 
-if (args.length != 1) {
-    throw "Bad arguments! Only one argument supported."; 
-}
-
-get_data(args[0]); 
+rl.question("Enter number of samples: ", (nsamples) => {
+    rl.question("Enter a csv filename with path: ", (fpath) => {
+        get_data(fpath, nsamples); 
+        rl.close();
+    });
+});
