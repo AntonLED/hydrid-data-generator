@@ -60,8 +60,8 @@ const rl = readline.createInterface({
     output: process.stdout
 }); 
 
-rl.question("Enter number of samples: ", (nsamples) => {
-    rl.question("Enter a csv filename with path: ", (fpath) => {
+rl.question("Введите размер выборки: ", (nsamples) => {
+    rl.question("Введите путь к csv-файлу для генерации: ", (fpath) => {
         get_data(fpath, nsamples); 
         rl.close();
     });
