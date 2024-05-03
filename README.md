@@ -1,8 +1,12 @@
-# Code for hydrid storage capacity data generation.
+# Генератор датасета для ИИ на основании вводных данных
 
-## Only csv format supported yet!
+## На данный момент поддерживаются только csv-файлы!
 
-**Usage**: 
-> node generator.js datapath 
-
-For example, datapath could be a *./my-data.csv*
+**Использование**: 
+```bash
+git clone https://github.com/AntonLED/hydrid-data-generator.git
+cd hydrid-data-generator
+cd src 
+node generator.js
+```
+Далее ввести необходимые данные, следуя подсказкам программы. 
