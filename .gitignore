@@ -1,4 +1,5 @@
 node_modules
 estimator.py 
 *.csv
+*.py
 !example-data.csv

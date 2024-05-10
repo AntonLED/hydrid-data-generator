@@ -14,7 +14,6 @@ function writeCSV(fname="./hydrid-data.csv", data=[]) {
     console.log(`File ${fname} succesfully generated!`); 
 }
 
-
 function get_data(fname="./hydrid-data.csv", nsampes=1000) { 
     // ln(P [MPa]) = k * 1000/T[K] + b 
     const a = -3.417, b = 9.916; 
@@ -39,7 +38,6 @@ function get_data(fname="./hydrid-data.csv", nsampes=1000) {
         let T = Tmin + (Tmax - Tmin) * i / N; 
         let P = Math.exp(a * 1000 / T + b); 
         let Cmax = (-B - Math.sqrt(B * B - 4 * A * (C - Math.log(P)))) / 2 / A;  
-        let tcharge = 1 - Math.sqrt(1 - Cmax / 100); 
         data.push(
             {
                 "temp": T,
@@ -51,6 +49,7 @@ function get_data(fname="./hydrid-data.csv", nsampes=1000) {
 
     writeCSV(fname, data); 
 }; 
+
 
 const readline = require("node:readline"); 
 const rl = readline.createInterface({
