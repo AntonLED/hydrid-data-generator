@@ -7,7 +7,6 @@ function writeCSV(fname="./hydrid-data.csv", data=[]) {
             {id: "temp", title: "Temperature [K]"}, 
             {id: "pres", title: "Pressure [MPa]"},
             {id: "cmax", title: "Max Capacity [wt%]"},
-            {id: "tcharge", title: "Charge time 1 / [wt%/s]"}
         ]
     }); 
 
@@ -46,7 +45,6 @@ function get_data(fname="./hydrid-data.csv", nsampes=1000) {
                 "temp": T,
                 "pres": P, 
                 "cmax": Cmax,
-                "tcharge": tcharge
             }
         );
     }
